@@ -8,6 +8,7 @@ private final static int NUM_MINES = 20;
 void setup ()
 {
     size(400, 400);
+    background(203);
     textAlign(CENTER,CENTER);
     Interactive.make( this );
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
