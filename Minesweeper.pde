@@ -19,7 +19,6 @@ void setup ()
     }
     mines = new ArrayList<MSButton>();
     setMines();
-    System.out.println(countMines(3,3));
 }
 public void setMines()
 {
@@ -28,7 +27,6 @@ public void setMines()
     int c = (int)(Math.random()*NUM_ROWS);   
     if(!mines.contains(buttons[r][c])){
       mines.add(buttons[r][c]);
-      System.out.println(r+","+c);
     }
   }
 }
@@ -54,7 +52,6 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    System.out.println("loss");
     for(int r = 0;r<mines.size();r++){
       mines.get(r).clicked=true;
     }
@@ -62,7 +59,6 @@ public void displayLosingMessage()
 }
 public void displayWinningMessage()
 {
-    System.out.println("win");
     stroke(0,255,0);
 }
 public boolean isValid(int r, int c)
@@ -129,7 +125,6 @@ public class MSButton
     }
     public void mousePressed ()
     {
-        System.out.println("set");
       clicked = true;
         if(mouseButton == RIGHT){
           flagged = !flagged;
