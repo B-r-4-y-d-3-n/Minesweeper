@@ -1,9 +1,9 @@
 import de.bezier.guido.*;
 private MSButton[][] buttons; 
 private ArrayList <MSButton> mines; 
-private final static int NUM_ROWS = 10;
-private final static int NUM_COLS = 10;
-private final static int NUM_MINES = 20;
+private final static int NUM_ROWS = 20;
+private final static int NUM_COLS = 20;
+private final static int NUM_MINES = 40;
 
 void setup ()
 {
