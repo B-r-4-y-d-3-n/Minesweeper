@@ -3,7 +3,7 @@ private MSButton[][] buttons;
 private ArrayList <MSButton> mines; 
 private final static int NUM_ROWS = 20;
 private final static int NUM_COLS = 20;
-private final static int NUM_MINES = 40;
+private final static int NUM_MINES = 80;
 
 void setup ()
 {
