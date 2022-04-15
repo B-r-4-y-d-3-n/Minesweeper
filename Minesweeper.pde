@@ -74,36 +74,21 @@ public boolean isValid(int r, int c)
   }
   return true;
 }
-public int countMines(int row, int col)
+public int countMines(int row, int col) //counts the number of mines 1 space from the tile you clicked on
 {
   int SARYNEVERCLEAR = 0;
- if(isValid(row,col-1)==true&&mines.contains(buttons[row][col-1])==true){
-   SARYNEVERCLEAR++;
+  for(int r = row-1; r <= row+1; r++){
+    for(int c = col-1; c <= col+1; c++){
+      if(isValid(r,c) && mines.contains(buttons[r][c])){
+        SARYNEVERCLEAR++;
+      }
+    }
+  }
+  if(mines.contains(buttons[row][col])){
+    SARYNEVERCLEAR--;
+  }
+  return SARYNEVERCLEAR;
 }
- if(isValid(row-1,col-1)==true&&mines.contains(buttons[row-1][col-1])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row-1,col)==true&&mines.contains(buttons[row-1][col])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row,col+1)==true&&mines.contains(buttons[row][col+1])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row+1,col)==true&&mines.contains(buttons[row+1][col])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row+1,col+1)==true&&mines.contains(buttons[row+1][col+1])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row+1,col-1)==true&&mines.contains(buttons[row+1][col-1])==true){
-   SARYNEVERCLEAR++;
-}
- if(isValid(row-1,col+1)==true&&mines.contains(buttons[row-1][col+1])==true){
-   SARYNEVERCLEAR++;
-}
-return SARYNEVERCLEAR;
-}
-
 public class MSButton
 {
     private int myRow, myCol;
