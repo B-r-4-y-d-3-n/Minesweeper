@@ -5,10 +5,10 @@ private final static int NUM_ROWS = 20; //the number of rows in the program
 private final static int NUM_COLS = 20; //the number of columns in the program
 private final static int NUM_MINES = 80; //the total number of mines in the program
 void setup (){ //setup for the game, the return type is void so there is nothing to return
-    size(400, 400); //sets the size of the minesweeper game in pixels
+    size(400, 400); //sets the size of the minesweeper game
     background(203); //sets the background to gray
     textAlign(CENTER,CENTER); //aligns the text to the center, this will be used when the mines get the labels
-    Interactive.make(this);
+    Interactive.make(this); //taken from Mr. Simon's code
     buttons = new MSButton[NUM_ROWS][NUM_COLS]; //initializes the new 2D array for the buttons/mines
     for(int r = 0;r<NUM_ROWS;r++){ //outer loop to make the 2D array of buttons
       for(int c = 0;c<NUM_COLS;c++){ //inner loop to make the 2D array of buttons
@@ -95,54 +95,57 @@ public class MSButton{ //creates the new MSButton class
         y = myRow*height; //sets y equal to the row number multiplied by the height
         myLabel = ""; //sets the label equal to an empty string for the time being
         flagged = clicked = false; //sets flagged, and clicked to false
-        Interactive.add(this);
+        Interactive.add(this); //taken from Mr. Simon's code
     }
-    public void mousePressed (){
-      clicked = true;
-        if(mouseButton == RIGHT){
-          flagged = !flagged;
-          clicked = false;
-          myLabel = "";
-        }else if(mines.contains(this)){
-          displayLosingMessage();}
-      else if(countMines(this.getR(),this.getC())>0){
-         myLabel = countMines(myRow,myCol) + "";
-      }else{
-        for(int g = -1;g<=1;g++){
-          for(int l = -1;l<=1;l++){
-            if(isValid(myRow+g,myCol+l)==true && buttons[myRow+g][myCol+l].clicked==false){
-            buttons[myRow+g][myCol+l].mousePressed();
+    public void mousePressed (){ //function to click on tiles
+      clicked = true; //boolean starts as true
+        if(mouseButton == RIGHT){ //if you right click
+          flagged = !flagged; //flagged changes its current position, if it's flagged, it's unflagged, if it's unflagged, its flagged
+          clicked = false; //clicked then shifts to false;
+          myLabel = ""; //label is empty because you don't want to reveal any mines
+        }
+        else if(mines.contains(this)){ //if you click and the tile is a mine
+          displayLosingMessage(); //you lose
+          }
+      else if(countMines(this.getR(),this.getC())>0){ //if the tile in the position has over 0 mines
+         myLabel = countMines(myRow,myCol) + ""; //the label is now the amount of mines around the tile
+      }
+      else{ //if neither is true
+        for(int g = -1;g<=1;g++){ //outer loop to traverse the array
+          for(int l = -1;l<=1;l++){ //inner loop to traverse the array
+            if(isValid(myRow+g,myCol+l)==true && buttons[myRow+g][myCol+l].clicked==false){ //statement to check if the tile around it is valid, as well as if the tile has been clicked
+            buttons[myRow+g][myCol+l].mousePressed(); //if it hasn't been clicked, it checks to see if the tile is a mine, if it's not, it reveals it and how many mines are adjacent, otherwise is continues going
           }
         }
       }
     }
   }
-    public void draw (){    
-       if (flagged)
-          fill(0);
-        else if( clicked && mines.contains(this) )
-           fill(255,0,0);
-        else if(clicked)
-           fill( 200 );
-        else
-            fill( 100 );
-        rect(x, y, width, height);
-        fill(0);
-        text(myLabel,x+width/2,y+height/2);
+    public void draw (){ //draw function, no return type
+       if(flagged) //if the tile is flagged
+          fill(0); //the tile turns black
+        else if(clicked && mines.contains(this)) //else if the tile is clicked, and the tile contains a mine
+           fill(255,0,0); //turn all the mines red
+        else if(clicked) //else if the tile is clicked, and the tile is not a mine
+           fill(200); //turn it white-greyish
+        else //otherwise
+            fill(100); //the tile remains a darker grey
+        rect(x, y, width, height); //creates rectangles with the dimension x, y, and positions, width, height
+        fill(0); //fills it black
+        text(myLabel,x+width/2,y+height/2); //created the label that's in the middle of the rectangle
     }
-    public void setLabel(String newLabel){
-        myLabel = newLabel;
+    public void setLabel(String newLabel){ //setter to set the old label to the new label
+        myLabel = newLabel; //sets the old label to the new label
     }
-    public void setLabel(int newLabel){
-        myLabel = ""+ newLabel;
+    public void setLabel(int newLabel){ //sets the label, using the integer value of newLabel
+        myLabel = ""+ newLabel; //makes the label equal the integer value of new label
     }
-    public boolean isFlagged(){
-        return flagged;
+    public boolean isFlagged(){ //boolean function to check if something is flagged
+        return flagged; //if it is, return true
     }
-    public int getR(){
-      return myRow;
+    public int getR(){ //getter function for row
+      return myRow; //returns the row
     }
-    public int getC(){
-      return myCol;
+    public int getC(){ //getter function for the column
+      return myCol; //returns the column
     }
 }
