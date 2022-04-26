@@ -1,3 +1,4 @@
+//This code works on GitHub! Just copy paste the code and create your page and it should work!
 import de.bezier.guido.*; //importing a button program where the buttons are able to be turned on or off, the buttons will be used as the mines and tiles in the minesweeper game!
 private MSButton[][] buttons; //a 2D array that holds a certain amount of rows of buttons, and columns of buttons, the buttons can be turns on and off, and will be visible on the screen.
 private ArrayList <MSButton> mines; //an ArrayList that holds the number of mines in the program
