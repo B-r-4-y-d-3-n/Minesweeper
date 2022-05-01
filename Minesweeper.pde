@@ -4,7 +4,7 @@ private MSButton[][] buttons; //a 2D array that holds a certain amount of rows o
 private ArrayList <MSButton> mines; //an ArrayList that holds the number of mines in the program
 private final static int NUM_ROWS = 20; //the number of rows in the program
 private final static int NUM_COLS = 20; //the number of columns in the program
-private final static int NUM_MINES = 40; //the total number of mines in the program
+private final static int NUM_MINES = 80; //the total number of mines in the program
 void setup (){ //setup for the game, the return type is void so there is nothing to return
     size(400, 400); //sets the size of the minesweeper game
     background(203); //sets the background to gray
